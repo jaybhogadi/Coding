@@ -1,0 +1,27 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+m 
+using namespace std;
+
+int main()
+{
+   int k;
+   cin>>k;
+   int dp[k+1]={0};
+   dp[0]=0;
+   dp[1]=1;
+   dp[2]=2;
+   for(int i=3;i<(k+1);i++)
+   {
+       dp[i]=(dp[i-2]+dp[i-1]);
+   }
+cout<<dp[k];
+    return 0;
+}

@@ -1,0 +1,56 @@
+/******************************************************************************
+
+                 Example 1:
+
+Input: N = 3, K = 3
+ 
+Output: “213”
+
+Explanation: The sequence has 3! permutations as illustrated in the figure above. K = 3 corresponds to the third sequence.
+
+Example 2:
+
+Input: N = 3, K = 5 
+
+Result: “312”
+
+Explanation: The sequence has 3! permutations as illustrated in the figure above. K = 5 corresponds to the fifth sequence.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+string per(int n,int k)
+{
+    vector<int> num;
+    int fact=1;
+    string ans="";
+    for(int i=1;i<n;i++)
+    {
+        fact*=i;
+        num.push_back(i);
+    }
+    num.push_back(n);
+    k=k-1;
+    while(true)
+    {
+        ans+=to_string(num[k/fact]);
+        num.erase(num.begin()+k/fact);
+        if(num.size()==0)
+          break;
+        k=k%fact;
+        fact/=num.size();
+        
+    }
+    return ans;
+}
+
+int main()
+{
+  int n,k;
+  cin>>n>>k;
+  cout<<per(n,k);
+
+    return 0;
+}

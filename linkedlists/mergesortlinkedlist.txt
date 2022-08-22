@@ -1,0 +1,103 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int x)
+    {
+        this->data=x;
+        this->next=NULL;
+    }
+};
+Node* MergeBoth(Node* first,Node* second)
+{
+    Node *answer=NULL;
+    if(!first)
+      return second;
+      if(!second)
+      return first;
+     if(first->data<=second->data)
+     {
+         answer=first;
+        answer->next=MergeBoth(first->next,second);
+         
+     }else{
+         answer=second;
+         answer->next=MergeBoth(first,second->next);
+     }
+     return answer;
+}
+void findMiddle(Node* cur,Node** first,Node** second)
+{
+    Node* slow=cur;
+    Node* fast=cur;
+    while(fast->next!=NULL && fast->next->next!=NULL)
+   {
+        slow=slow->next;
+       fast=fast->next->next;
+    
+    }
+    *first=cur;
+    *second=slow->next;
+    slow->next=NULL;
+   
+}
+void mergeSort(Node** head)
+{
+    Node* cur=*head;
+    Node* first=NULL;
+    Node* second=NULL;
+    if(!cur || !cur->next)
+      return;
+    findMiddle(cur,&first,&second);
+    mergeSort(&first);
+    mergeSort(&second);
+    *head=MergeBoth(first,second);
+    
+}
+
+int main()
+{
+   cout<<"Enter no of  no s"<<endl;
+   int n;
+   cin>>n;
+   Node* m=new Node(7);
+   Node* temp=m;
+   Node* temp1=m;
+   while(n--)
+   {
+       int k;
+       cout<<"Enter";
+       cin>>k;
+       Node* f=new Node(k);
+       m->next=f;
+       m=f;
+       
+   }temp=temp->next;
+   while(temp!=NULL)
+   {
+       cout<<temp->data<<" ";
+       temp=temp->next;
+   }cout<<endl;
+   m=temp1;
+   m=m->next;
+   mergeSort(&m);
+   Node* t1=m;
+   while(t1!=NULL)
+   {
+       cout<<t1->data<<" ";
+       t1=t1->next;
+   }
+   
+    return 0;
+}

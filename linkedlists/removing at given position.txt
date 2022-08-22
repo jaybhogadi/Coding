@@ -1,0 +1,57 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* link;
+    Node(int x){
+        this->data=x;
+        this->link=NULL;
+    }
+};
+
+int main()
+{
+    int n;
+    cin>>n;
+    Node* d=new Node(5);
+    Node* temp=d;
+    for(int i=0;i<n;i++)
+    {
+        int k;
+        cin>>k;
+        Node* t=new Node(k);
+        temp->link=t;
+        temp=temp->link;
+        
+    }
+    cout<<"enter the position";
+    int g;
+    cin>>g;
+   
+    d=d->link;
+    temp=d;
+     while(g-2>0)
+     {
+         d=d->link;
+         g--;
+     }
+     d->link=d->link->link;
+     d=temp;
+    while(d!=NULL)
+    {
+        cout<<d->data<<" ";
+        d=d->link;
+    }
+
+    return 0;
+}

@@ -1,0 +1,5 @@
+https://www.tutorialspoint.com/what-are-the-different-phases-of-database-development-life-cycle-dbms
+https://www.tutorialspoint.com/dbms/dbms_generalization_aggregation.htm
+
+
+https://www.tutorialspoint.com/dbms/dbms_transaction.htm

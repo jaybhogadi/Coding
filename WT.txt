@@ -1,0 +1,11 @@
+<code></code>
+super script sub script
+meta tag
+<meta name="author" content="jaya,krishna,sri">
+anchor tags
+ol ordered list
+ul -unordered list
+
+dl-defination list
+dt-defination term
+dd-defination data

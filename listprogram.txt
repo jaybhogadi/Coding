@@ -1,0 +1,38 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+n=int(input())
+list_1=list(map(int,input().split()))
+list1,c,list2=[0]*(n+2),1,[-1]*(n+1)
+flag=0
+for i in list_1:
+    if(list1[i]!=0):
+        flag=flag+1
+    list1[i]+=1
+    
+for i in range(n):
+    if list1[list_1[i]]>1:
+        while list1[c]!=0:
+            c=c+1 
+        if c>list_1[i]:
+            if list2[list_1[i]]==-1:
+                list2[list_1[i]]=0
+            else:
+                list1[list_1[i]]-=1
+                list_1[i]=c
+                c+=1 
+                 
+        else:
+            list1[list_1[i]]-=1
+            list_1[i]=c 
+            c+=1 
+            
+print(flag)           
+print(*list_1)            
+            
+        

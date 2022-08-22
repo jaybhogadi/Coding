@@ -1,0 +1,118 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int t;
+    cin>>t;
+    int n,q;
+    cin>>n>>q;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+
+Node* insert1(Node* root,int k)
+{
+    if(root==NULL)
+    {
+        Node *m=new Node(k);
+        return m;
+    }
+    if(k<root->data)
+    {
+        root->left=insert1(root->left,k);
+    }else
+        root->right=insert1(root->right,k);
+    
+    return root;
+}
+
+
+
+
+class Node{
+    public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int x)
+    {
+         this->data=x;
+        this->left=NULL;
+        this->right=NULL;
+     }
+};
+ 
+
+
+Node* root=NULL;
+        for(int i=0;i<n;i++)
+        {
+            int k;
+            cin>>k;
+            root=insert1(root,k);
+        }
+
+
+
+
+
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        priority_queue<int> sh;
+        priority_queue<int,vector<int>,greater<int>> bh;
+        for(int i=0;i<n;i++)
+        {
+            int x;
+            cin>>x;
+            if(x<sh.top())
+                sh.push(x);
+            else
+                bh.push(x);
+            if((sh.size()-bh.size())>1)
+            {
+                bh.push(sh.top());
+                sh.pop();
+            }
+            if((bh.size()-sh.size())>1)
+            {
+                sh.push(bh.top());
+                bh.pop();
+            }
+            cout<<sh.top()<<" ";
+        }
+          cout<<endl;  
+           
+            
+        }
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}

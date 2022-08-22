@@ -1,0 +1,51 @@
+creating project:
+   django-admin startproject projectname
+creating app:
+   python manage.py startapp appname
+make changes in main urls.py
+    import include
+    join to app urls(create app urls)
+in app urls
+    import path,include,os
+    urlpatte=[.views,name="name"]
+in app views:
+    import render
+    def function:
+    return render(....)
+connecting templates:
+    create template folder add html files
+in settings:
+   templates:[
+      'DIRS': [os.path.join(BASE_DIR,'templates')],
+connecting static files:
+	STATIC_URL = '/static/'
+	STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+	STATIC_ROOT=os.path.join(BASE_DIR,'assets')
+	MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+	MEDIA_URL='media1/'
+{% load static %}
+form action=" " method="post"
+{%csrf_token%}
+python mange.py collectstatic
+connecting to database
+     INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+ -->   'jai',(app-name)
+	]
+
+in models creating tables
+python manage.py makemigrations
+python manage.py migrate
+------------------------------------------------------
+dbms
+dept=departments.objects.get(departmentID=id)
+dept.delete()
+
+
+
+   

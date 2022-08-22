@@ -1,0 +1,64 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+int f(int n,int minp,int s,map<int,int> mp)
+{
+    auto it=mp.find(n);
+    
+    cout<<((*it).first)<<endl;
+    if(n<minp)
+      return 0;
+    
+    if(it!=mp.end())
+    {
+     int p=(((*it).first)*((*it).second))+f(n-2,minp,s,mp);
+     int up=f(n-1,minp,s,mp);
+      return max(p,up);
+    }else
+      return f(n-1,minp,s,mp);
+   
+    
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+     cin>>a[i];
+     int maxp=0,minp=INT_MAX;
+    map<int,int> mp;
+    for(int i=0;i<n;i++)
+    {
+        if(maxp<a[i]) 
+          maxp=a[i];
+          if(minp>a[i]) 
+          minp=a[i];
+       auto it=mp.find(a[i]);
+       if(it!=mp.end())
+       {
+           int i=(*it).second;
+           i=i+1;
+           (*it).second=i;
+       }else
+       mp[a[i]]=1;
+       
+    }
+    
+
+  int sum=0;
+ 
+  cout<<f(maxp,minp,sum,mp);
+
+    return 0;
+}

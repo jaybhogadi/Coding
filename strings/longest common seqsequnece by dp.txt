@@ -1,0 +1,39 @@
+/******************************************************************************
+
+     dp on strings
+     longest common subsequence
+     (abc->ac,ab,abc,bc,a,b,c)-->abc=longest sebsequence
+     
+     
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int f(int u,int v,string &a,string &b,vector<vector<int>> &dp)
+{
+    
+    if(u==0 || v==0)
+     return 0;
+    if(dp[u][v]!=-1)
+      return dp[u][v];
+    if(a[u-1]==b[v-1])
+       return 1+f(u-1,v-1,a,b,dp);
+    else
+      return dp[u][v]=max(f(u-1,v,a,b,dp),f(u,v-1,a,b,dp));
+}
+
+int main()
+{
+    string a,b;
+    cin>>a>>b;
+    int l=a.length(),m=b.length();
+    vector<vector<int>> dp(l+1,vector<int>(m+1,-1));
+    int m1=f(l,m,a,b,dp);
+    cout<<m1<<endl;
+
+
+    return 0;
+}

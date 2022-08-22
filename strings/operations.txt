@@ -1,0 +1,100 @@
+int string::compare (const string& str) const
+Returns:
+0 : if both strings are equal.
+A value < 0 : if *this is shorter than str or,
+first character that doesn't match is smaller than str.
+A value > 0 : if *this is longer than str or,
+first character that doesn't match is greater
+..................................................
+
+
+string substr (size_t pos, size_t len) const;
+Parameters:
+pos: Position of the first character to be copied.
+len: Length of the sub-string.
+size_t: It is an unsigned integral type.
+Return value: 
+It returns a string object.
+
+Example:
+
+
+// CPP program to illustrate substr()
+#include <string.h>
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    // Take any string
+    string s1 = "Geeks";
+ 
+    // Copy two characters of s1 (starting
+    // from position 3)
+    string r = s1.substr(3, 2);
+ 
+    // prints the result
+    cout << "String is: " << r;
+ 
+    return 0;
+}
+Output
+String is: ks
+
+...................................................
+
+
+/******************************************************************************
+
+              Word Break Problem
+              
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+bool in(vector<string> s,string k)
+{
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i].compare(k)==0)
+        return true;
+    }
+    return false;
+}
+
+bool contains(vector<string> s,string k)
+{
+    if(k.length()==0)
+      return true;
+    for(int i=0;i<=k.length();i++)
+    {
+        if(in(s,k.substr(0,i)) && contains(s,k.substr(i,k.length()-i)))
+          return true;
+    }
+    return false;
+}
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string> v;
+    for(int i=0;i<n;i++)
+      {
+          string k;
+          cin>>k;
+          v.push_back(k);
+      }
+      string m;
+      cin>>m;
+      if(contains(v,m))
+       cout<<"Yes"<<endl;
+      else
+      cout<<"No"<<endl;
+
+    return 0;
+}
+

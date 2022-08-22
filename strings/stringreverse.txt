@@ -1,0 +1,33 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+   string s,g="";
+   getline(cin,s);
+   int l=s.length();
+   for(int i=0;i<l;i++)
+   {
+       if(s[i]!=' ')
+        g+=s[i];
+        else{
+      reverse(g.begin(),g.end());
+       cout<<g<<endl;
+        g="";
+        }
+   }
+   reverse(g.begin(),g.end());
+   cout<<g<<endl;
+
+    return 0;
+}

@@ -1,0 +1,50 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+#define count 128
+
+string sliding(string s)
+{
+    int begin=0,end=0,low,high,beforesize=-1;
+    unordered_set<char> window;
+    int freq[count]={0};
+    for(low=0,high=0;high<s.length();high++)
+    {
+      
+        freq[s[high]]++;
+       while(freq[s[high]]>1)
+        {
+            
+            freq[s[low]]--;
+            low++;
+            
+        }
+       
+        
+        if(end-begin<high-low)
+        {
+            end=high;
+            begin=low;
+        } 
+        
+    }
+    return s.substr(begin,end-begin+1);
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    string n=sliding(s);
+    cout<<n;
+
+    return 0;
+}

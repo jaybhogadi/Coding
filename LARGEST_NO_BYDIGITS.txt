@@ -1,0 +1,61 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+bool comp(int a,int b)
+{
+    int c=a,d=b;
+     int counta=0,countb=0;
+     while(a>0)
+     {
+         counta++;
+         a/=10;
+     }
+     while(b>0)
+     {
+         countb++;
+         b/=10;
+     }a=c;
+     b=d;
+     while(counta)
+     {
+         d*=10;
+         counta--;
+     }
+     while(countb)
+     {
+         c*=10;
+         countb--;
+     }d+=a;
+     c+=b;
+     
+     return c>d;
+}
+
+
+int main()
+{
+   int n;
+   cin>>n;
+   vector<int> a;
+ for(int i=0;i<n;i++)
+    {
+        int k;
+        cin>>k;
+        a.push_back(k);
+    }
+    sort(a.begin(),a.end(),comp);
+    for(int i=0;i<n;i++)
+   cout<<a[i];
+    
+
+    return 0;
+}

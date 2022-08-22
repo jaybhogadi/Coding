@@ -1,0 +1,35 @@
+installing nodejs
+installing mongo db
+    reading documnetation
+            mkdir data mkdir db
+    copying command from documentation
+
+cmd opening:
+    npm install package.json
+               starting app.js
+    npm install express --save
+    npm install cors body-parser  mongoose --save
+
+opening app.js:
+    require('express')
+             mongoose
+             path
+             cors
+             body-parser
+   app=express();
+   app.listen
+
+  //routing
+   creating folder
+   get
+   post
+   put
+   delete
+
+  //creating model folder 
+   creating contact schema
+   exporting
+   using it in app.js
+  connecting to mongodb
+  
+

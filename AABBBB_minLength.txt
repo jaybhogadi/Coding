@@ -1,0 +1,51 @@
+/******************************************************************************
+charan factset
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string s;
+    cin>>s;
+    stack<char> st;
+    char bf,af;
+    bf=s[0];
+    st.push(s[0]);
+    for(int i=1;i<s.length();i++)
+    {
+         
+        af=s[i];
+        if(bf=='A' && af=='B'){
+           st.pop();
+          if(!st.empty())
+          {
+              bf=st.top();
+             
+          }
+        }
+        else if(bf=='B' && af=='B'){
+         st.pop();
+         if(!st.empty())
+          {
+              bf=st.top();
+             
+          }
+        }
+        else 
+        {
+            st.push(s[i]);
+            bf=s[i];
+        }
+          
+    }
+    cout<<st.size()<<endl;
+
+    return 0;
+}

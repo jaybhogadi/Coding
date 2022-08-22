@@ -1,0 +1,75 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+// bool comp(int a,int b)
+// {
+//     int c=a,d=b;
+//      int counta=0,countb=0;
+//      while(a>0)
+//      {
+//          counta++;
+//          a/=10;
+//      }
+//      while(b)
+//      {
+//          countb++;
+//          b/=10;
+//      }a=c;
+//      d=b;
+//      while(counta)
+//      {
+//          d*=10;
+//          counta--;
+//      }
+//      while(countb)
+//      {
+//          c*=10;
+//          countb--;
+//      }d+=a;
+//      c+=b;
+//      return c>d;
+// }
+bool comp(string a,string b)
+{
+    return a<b;
+}
+
+int main()
+{
+    string s;
+    getline(cin,s);
+    int l=s.length();
+    vector<string> v;
+    string w="";
+    for(int i=0;i<l;i++)
+    {
+        if(s[i]==' ')
+        {
+            v.push_back(w);
+            w="";
+        }else
+        {
+            w+=s[i];
+        }
+    }
+    v.push_back(w);
+    cout<<"BEFORE SORTING"<<endl;
+    for(int i=0;i<v.size();i++)
+     cout<<v[i]<<" "<<endl;
+    sort(v.begin(),v.end(),comp); 
+    cout<<"AFTER SORTING"<<endl;
+    for(int i=0;i<v.size();i++)
+     cout<<v[i]<<" "<<endl;
+    
+
+    return 0;
+}

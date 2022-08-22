@@ -1,0 +1,65 @@
+/******************************************************************************
+
+     dp on strings
+     longest common subsequence
+     (abc->ac,ab,abc,bc,a,b,c)-->abc=longest sebsequence
+     
+     //tabular form topdown approach using dt
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int f(int u,int v,string &a,string &b,vector<vector<int>> &dp)
+{
+    
+    if(u==0 || v==0)
+     return 0;
+    if(dp[u][v]!=-1)
+      return dp[u][v];
+    if(a[u-1]==b[v-1])
+       return 1+f(u-1,v-1,a,b,dp);
+    else
+      return max(f(u-1,v,a,b,dp),f(u,v-1,a,b,dp));
+}
+
+int main()
+{
+    string a,b;
+    cin>>a>>b;
+    int l=a.length(),m=b.length();
+    vector<vector<int>> dp(l+1,vector<int>(m+1,-1));
+   for(int i=0;i<=l;i++) dp[i][0]=0;
+   for(int i=0;i<=m;i++)  dp[0][i]=0;
+   for(int i=1;i<=l;i++)
+   for(int j=1;j<=m;j++)
+   {
+     if(a[i-1]==b[j-1]) dp[i][j]=1+dp[i-1][j-1];
+     else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+   }
+    cout<<dp[l][m]<<endl;
+
+
+    return 0;
+}
+//space optimization
+//   string a,b;
+//     cin>>a>>b;
+//     int l=a.length(),m=b.length();
+//    vector<int> curr(m+1,0),prev(m+1,0);
+//   
+//   for(int i=1;i<=l;i++)
+
+//   {
+//   for(int j=1;j<=m;j++)
+//   {
+//      if(a[i-1]==b[j-1]) curr[j]=1+prev[j-1];
+//      else curr[j]=max(prev[j],curr[j-1]);
+        
+//   }
+      //prev=curr;
+      //}
+
+//     cout<<curr[m]<<endl;

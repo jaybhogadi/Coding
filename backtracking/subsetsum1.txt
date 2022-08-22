@@ -1,0 +1,66 @@
+
+//**********************
+// Example 1:
+
+// Input: N = 3, arr[] = {5,2,1}
+
+// Output: 0,1,2,3,5,6,7,8
+
+// Explanation: We have to find all the subset’s sum and print them.in this case the generated subsets are [ [], [1], [2], [2,1], [5], [5,1], [5,2]. [5,2,1],so the sums we get will be  0,1,2,3,5,6,7,8
+
+
+// Input: N=3,arr[]= {3,1,2}
+
+// Output: 0,1,2,3,3,4,5,6
+
+// Explanation: We have to find all the subset’s sum and print them.in this case the generated subsets are [ [], [1], [2], [2,1], [3], [3,1], [3,2]. [3,2,1],so the sums we get will be  0,1,2,3,3,4,5,6
+// **************
+#include<bits/stdc++.h>
+using namespace std;
+class solution{
+    public:
+    vector<int> sum(vector<int> v,int s)
+    {
+      
+        vector<int> allsum;
+        fun(0,0,v,s,allsum);
+        sort(allsum.begin(),allsum.end());
+        return allsum;
+    }
+    void fun(int index,int sum,vector<int> v,int n,vector<int> &allsum)
+    {
+     
+        if(index==n)
+        {
+            allsum.push_back(sum);
+            return;
+        }
+        fun(index+1,sum+v[index],v,n,allsum);
+        fun(index+1,sum,v,n,allsum);
+    }
+};
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> v;
+    for(int i=0;i<n;i++)
+    {
+        int k;
+        cin>>k;
+        v.push_back(k);
+        
+    }
+    solution obj;
+   
+    vector<int> ans=obj.sum(v,n);
+    for(auto i:ans)
+    {
+        
+        cout<<i<<" ";
+    }
+    
+    
+    
+    return 0;
+}

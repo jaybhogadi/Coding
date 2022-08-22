@@ -1,0 +1,33 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+   string s;
+   getline(cin,s);
+   int l=s.length();
+   int flag=0;
+   for(int i=0;i<l/2;i++)
+   {
+       if(s[i]!=s[l-i-1])
+        {
+            flag=1;
+            cout<<"Not palindrome"<<endl;
+            break;
+        }
+   }
+  if(flag==0)
+   cout<<"palindrome"<<endl;
+
+    return 0;
+}

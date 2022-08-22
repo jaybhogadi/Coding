@@ -1,0 +1,73 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long int l;
+
+int get(l a)
+{
+    if(a==1)
+      a=1;
+    else if(a==2)
+     a=3;
+     else if(a==3)
+      a=3;
+     else if(a==4)
+      a=1;
+ return a;
+}
+int get1(l a)
+{
+    if(a==1 || a==4)
+      a=2;
+    else if(a==2 || a==3)
+        a=4;
+    
+         return a;
+}
+int main()
+{l n;
+cin>>n;
+vector<pair<l,l>> v;
+while(n!=1)
+{
+    l a=n/2;
+    l b=n%2;
+    n=a;
+    v.push_back({a,b});
+}
+reverse(v.begin(),v.end());
+l s=1;
+
+for(pair<l,l> p:v)
+{
+   
+    if(p.second==0)
+    {
+        s=get(s);
+      
+    }else{
+   
+     s=get1(s);}
+     
+    
+}
+if(s==1)
+ cout<<"a";
+ else if(s==2)
+  cout<<"b";
+  else if(s==3)
+   cout<<"c";
+   else
+   cout<<"d";
+}
+
+
