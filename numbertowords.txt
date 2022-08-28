@@ -1,0 +1,57 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+string converttostring(int k,string s)
+{
+    string ones[]={"","one ","two ","three ","four ","five ","six ","seven ","eight ","nine ","ten ","eleven ",
+                "tweleve ","thirteen ","fourteen ","fifteen ","sixteen ","seventeen ","eighteen ",
+                "ninteen"};
+    string tens[]={"","","twenty ","thirty ","forty ","fifty ","sixty ","seventy ","eighty ","ninty "};
+    string out="";
+    if(k>19)
+    {
+        out+=tens[k/10]+ones[k%10];
+      
+    }
+    else
+    {
+        out+=ones[k];
+    }
+     if (k)
+        out += s;
+    return out;
+}
+
+string numbtostring(long n)
+{
+    string res="";
+    res+=converttostring(((n/10000000)%100),"crore ");
+    res+=converttostring(((n/100000)%100),"lakh ");
+    res+=converttostring(((n/1000)%100),"thousand ");
+    res+=converttostring(((n/100)%10),"hundred ");
+    if(n>100 && n%100)
+      res+="and ";
+    res+=converttostring(n%100,"");
+    if(res=="")
+      res="zero";
+    return res;  
+}
+
+int main()
+{
+   long n;
+   cin>>n;
+   string res=numbtostring(n);
+   cout<<res<<endl;
+
+    return 0;
+}

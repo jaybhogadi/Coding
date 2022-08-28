@@ -1,0 +1,41 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+     cin>>a[i];
+     int left[n],right[n];
+     left[0]=a[0];
+     right[n-1]=a[n-1];
+     for(int j=1;j<n;j++)
+     {
+         left[j]=max(left[j-1],a[j]);
+     }
+     for(int j=n-2;j>=0;j--)
+     {
+         right[j]=max(right[j+1],a[j]);
+     }
+     int sum=0;
+     for(int i=0;i<n;i++)
+     {
+         int var=min(left[i],right[i]);
+         if(var>a[i])
+           sum+=var-a[i];
+     }
+     cout<<sum<<endl;
+
+    return 0;
+}

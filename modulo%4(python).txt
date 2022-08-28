@@ -1,0 +1,31 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+n=int(input())
+li=list(map(int,input().split()))
+modulus=[0 for i in range(4)]
+sum=0
+count=0
+for i in range(n):
+    mod=li[i]%4
+    sum+=mod
+    modulus[mod]+=1 
+if(sum%4!=0):
+    print(-1)
+else:
+    if(modulus[1]>modulus[3]):
+        count+=modulus[3]
+        modulus[1]-=modulus[3]
+        modulus[3]-=modulus[3]
+    modulus[2]+=modulus[1]//2
+    modulus[2]-=modulus[3]//2
+    count+=modulus[1]//2
+    count+=modulus[3]//2
+    count+=modulus[2]//2
+    print(count)
+    
