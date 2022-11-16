@@ -1,0 +1,67 @@
+
+https://practice.geeksforgeeks.org/problems/alien-dictionary/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=alien-dictionary
+
+class Solution{
+    private:
+    vector<int> toposort(vector<int> adj[],int V)
+    {
+         int indeg[V]={0};
+	    vector<int> ans;
+	    queue<int> q;
+	    for(int i=0;i<V;i++)
+	    {
+	        for(auto j:adj[i])
+	        {
+	            indeg[j]++;
+	        }
+	    }
+	     for(int i=0;i<V;i++)
+	     {
+	         if(indeg[i]==0)
+	           q.push(i);
+	     }
+	    while(!q.empty())
+	    {
+	        int a=q.front();
+	        q.pop();
+	        ans.push_back(a);
+	        for(auto j:adj[a])
+	        {
+	            indeg[j]--;
+	            if(indeg[j]==0)
+	              q.push(j);
+	        }
+	    }
+	    return ans;
+    }
+    public:
+    string findOrder(string dict[], int N, int K) {
+        //code here
+        int indegree[26]={-1};
+        vector<int> adj[K];
+        for(int i=0;i<N-1;i++)
+        {
+            string a=dict[i];
+            string b=dict[i+1];
+            int l=min(a.length(),b.length());
+            for(int i=0;i<l;i++)
+            { 
+                if(a[i]!=b[i])
+                
+                {  
+                    adj[a[i]-'a'].push_back(b[i]-'a');
+                    break;
+                }
+            }
+        }
+        
+        vector<int> topo=toposort(adj,K);
+        string ans="";
+        for(int i=0;i<topo.size();i++)
+        {
+            ans+=char(topo[i]+'a');
+            
+        }
+        return ans;
+       
+    }

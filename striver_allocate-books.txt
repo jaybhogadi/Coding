@@ -1,0 +1,45 @@
+
+https://www.interviewbit.com/problems/allocate-books/
+bool ip(int max,int B,vector<int> &A)
+{
+ int allocated=0,count=0;
+        for(int i=0;i<A.size();i++)
+        {
+            if(A[i]>max)
+            return false;
+            if(allocated+A[i]>max)
+            {
+                count++;
+                allocated=A[i];
+            }else
+            {
+                allocated+=A[i];
+            }
+        }
+        return count>=B?false:true;
+        }
+
+int Solution::books(vector<int> &A, int B) {
+    int n=A.size();
+    long long start=A[0],end=0;
+    if(n<B)
+     return -1;
+     for(int i=0;i<n;i++){
+       end+=A[i];
+       start=start>A[i]?A[i]:start;
+     }
+      
+       while(start<=end)
+       {
+       
+        if(ip(mid,B,A))
+        {
+            
+            end=mid-1;
+        }else
+         start=mid+1;
+
+       }
+       return start;
+        
+}

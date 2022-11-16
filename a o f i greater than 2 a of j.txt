@@ -1,0 +1,59 @@
+int merge(vector<int> &a,vector<int> &temp,int low,int high)
+{
+    int mid=(low+high)/2,ic=0;
+    int i=low,j=mid+1,k=low;
+    for(int i=low;i<=mid;i++)
+    {
+        while(j<=high && a[i]>(2LL*a[j]))
+        {
+            // cout<<a[i]<<" "<<a[j]<<endl;
+            j++;
+            
+        }
+        ic+=(j-(mid+1));
+    }
+    i=low,j=mid+1;
+    while(i<=mid && j<=high)
+    {
+        if(a[i]<=a[j])
+        {
+            temp[k++]=a[i++];
+        }else
+        {
+            temp[k++]=a[j++];
+           
+        }
+    }
+    while(i<=mid)
+      temp[k++]=a[i++];
+      while(j<=high)
+      temp[k++]=a[j++];
+      for(int i=low;i<=high;i++){
+      a[i]=temp[i];
+      }
+      return ic;
+}
+
+
+int mergesort(vector<int> &a,vector<int> &temp,int low,int high)
+{
+    int mid,ic=0;
+    if(low<high)
+    {
+        mid=(low+high)/2;
+        ic+=mergesort(a,temp,low,mid);
+        ic+=mergesort(a,temp,mid+1,high);
+        ic+=merge(a,temp,low,high);
+        
+    }
+    return ic;
+}
+
+
+class Solution {
+public:
+    int reversePairs(vector<int>& nums) {
+        vector<int> temp(nums.size());
+        return mergesort(nums,temp,0,nums.size()-1);
+    }
+};

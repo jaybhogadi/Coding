@@ -1,0 +1,94 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+long long int m=1000000;
+
+int power(int a,int x)
+{
+    int w=1,count=0;
+    while(w<a)
+    {
+        w=w*x;
+        count++;
+    }
+    return count;
+}
+int gcd(int a, int b)
+{
+    // Everything divides 0
+    if (a == 0)
+       return b;
+    if (b == 0)
+       return a;
+  
+    // base case
+    if (a == b)
+        return a;
+  
+    // a is greater
+    if (a > b)
+        return gcd(a-b, b);
+    return gcd(a, b-a);
+}
+
+
+int lcm(int a,int b)
+{
+    int k=a*b;
+    return k/gcd(a,b);
+}
+
+
+int main()
+{
+int a,b;
+cin>>a>>b;
+   long long int c[m]={0};
+   for(long long int i=1;i<m;i++)
+   { c[i]=i;
+     
+   }
+    for(long long int i=2;i<m;i++)
+    {
+        if(c[i]==i)
+        {
+            for(long long int j=i*i;j<m;j+=i)
+            {
+                if(c[j]==j)
+                  c[j]=i;
+            }
+        }
+    }
+   
+  int x=c[a];
+  int y=c[b];
+  int q1=power(a,x);
+  int q2=power(b,y);
+  int lc1=lcm(q1,q2)/q1;
+  int lc2=lcm(q1,q2)/q2;
+  long long int o=1,p=1;
+  for(long long int i=1;i<=lc1;i++)
+  {
+      o=o*a;
+  }
+  for(long long int i=1;i<=lc2;i++)
+  {
+      p=p*b;
+  }
+  if(o==p)
+   cout<<"YES";
+   else
+   cout<<"NO"<<endl;
+  
+  
+
+    return 0;
+}

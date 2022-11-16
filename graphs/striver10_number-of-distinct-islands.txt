@@ -1,0 +1,46 @@
+https://practice.geeksforgeeks.org/problems/number-of-distinct-islands/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=number-of-distinct-islands
+
+void dfs(int row,int col,vector<vector<int>> &vis,vector<vector<int>>& grid,vector<pair<int,int>> &v
+    ,int nr[],int nc[],int ind1,int ind2)
+    {
+         int n=grid.size();
+        int m=grid[0].size();
+        vis[row][col]=1;
+        v.push_back({row-ind1,col-ind2});
+        for(int k=0;k<4;k++)
+        {
+            int nrow=row+nr[k];
+            int ncol=col+nc[k];
+             if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]!=1 && grid[nrow][ncol]==1)
+                {
+                   
+                    dfs(nrow,ncol,vis,grid,v,nr,nc,ind1,ind2);
+                }
+        }
+        
+        
+    }
+    
+  public:
+    int countDistinctIslands(vector<vector<int>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>> vis(n,vector<int>(m,0));
+        set<vector<pair<int,int>>> st;
+           int nr[]={-1,0,+1,0};
+            int nc[]={0,+1,0,-1};
+      for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(vis[i][j]==0 && grid[i][j]==1)
+                {
+                    vector<pair<int,int>> v;
+                    dfs(i,j,vis,grid,v,nr,nc,i,j);
+                    st.insert(v);
+                }
+            }
+        }
+        return st.size();
+        // code here
+    }

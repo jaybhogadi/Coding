@@ -1,0 +1,50 @@
+https://practice.geeksforgeeks.org/problems/bipartite-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=bipartite-graph 
+
+private:
+    bool check(int i,int V,vector<int> adj[],vector<int> &col)
+    {
+         queue<int> q;
+	    q.push(i);
+	     col[i]=0;
+	   
+	    while(!q.empty())
+	    {
+	        int a=q.front();
+	       
+	        q.pop();
+	        for(auto in:adj[a])
+	        {
+	            if(col[in]==-1)
+	            {
+	                col[in]=!col[a];
+	                q.push(in);
+	            }else
+	            {
+	                if(col[in]==col[a])
+	                  return false;
+	            }
+	        }
+	    }
+	    return true;
+	    
+    }
+public:
+	bool isBipartite(int V, vector<int>adj[]){
+	    // Code here
+	    
+	   
+	   vector<int> col(V,-1);
+	   
+	     
+	     for(int i=0;i<V;i++)
+	     {
+	         if(col[i]==-1)
+	         {
+	             if(check(i,V,adj,col)==false)
+	              return false;
+	              
+	         }
+	     }
+	     return true;
+	    
+	}

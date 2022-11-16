@@ -1,0 +1,75 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+int n;
+
+
+// A utility function to swap two elements 
+void swap(int* a, int* b) 
+{ 
+    int t = *a; 
+    *a = *b; 
+    *b = t; 
+} 
+
+int part1(int a[],int low,int high)
+{
+    int u=a[low];
+    int i=low,j=high;
+    while(i<j)
+    {
+        cout<<i<<" "<<j<<endl;
+        do{
+            i++;
+        }while(a[i]<=u);
+        do{
+            j--;
+        }while(a[j]>u);
+        if(i<j)
+        {
+            swap(&a[i], &a[j]);
+        }for(int i=0;i<n;i++)
+     cout<<a[i];
+     cout<<endl;
+        
+    }
+   swap(&a[j], &a[low]);
+    
+   
+    return j;
+}
+
+
+
+void quick(int a[],int low,int high)
+{
+    if(low<high)
+    {
+        
+    int p=part1(a,low,high);
+    quick(a,low,p-1);
+    quick(a,p+1,high);
+    }
+}
+
+int main()
+{
+  //
+   cin>>n;
+   int a[n];
+   for(int i=0;i<n;i++)
+     cin>>a[i];
+    quick(a,0,n-1); 
+for(int i=0;i<n;i++)
+     cout<<a[i];
+    return 0;
+}
+

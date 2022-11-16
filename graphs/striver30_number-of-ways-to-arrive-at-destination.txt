@@ -1,0 +1,45 @@
+
+https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=/number-of-ways-to-arrive-at-destination
+ int countPaths(int n, vector<vector<int>>& roads) {
+        // code herevect
+        vector<pair<int,int>>ad[n];
+        for(auto it:roads)
+        {
+            ad[it[0]].push_back({it[1],it[2]});
+            ad[it[1]].push_back({it[0],it[2]});
+        }
+         priority_queue<pair<int,int>,vector<pair<int,int>>,
+        greater<pair<int,int>>> pq;
+        vector<int> steps(n,0);
+        vector<int> dist(n,1e9);
+        
+        pq.push({0,0});
+        
+        dist[0]=0;
+        steps[0]=1;
+        int mod=(int)1e9+7;
+        while(!pq.empty())
+        {
+            int distance=pq.top().first;
+            int node=pq.top().second;
+            
+            pq.pop();
+            
+            for(auto it:ad[node])
+            {
+               int node2=it.first;
+                int tym2=it.second;
+                
+                if(dist[node2]>(distance+tym2))
+                {
+                    dist[node2]=tym2+distance;
+                    steps[node2]=steps[node];
+                    pq.push({dist[node2],node2});
+                }else if(dist[node2]==(distance+tym2))
+                {
+                    steps[node2]=(steps[node2]+steps[node])%mod;
+                }
+            }
+        }
+        return steps[n-1]%mod;
+    }

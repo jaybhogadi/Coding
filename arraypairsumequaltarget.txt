@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& a, int k) {
+//          int pt1=0,pt2=a.size()-1;
+//    while(pt1<pt2)
+//    {
+//        if(a[pt1]+a[pt2]<k)
+//          pt1;
+//         else if(a[pt1]+a[pt2]>k)
+//          pt2--;
+//          else
+//          {
+//              break;
+//          }
+       
+//    }
+//   vector<int> v;
+//         v.push_back(pt1);
+//         v.push_back(pt2);
+//         return v;
+        unordered_map<int,int> mp;
+        vector<int> ans;
+        for(int i=0;i<a.size();i++)
+        {
+          if(mp.find(k-a[i])!=mp.end())
+          {
+              ans.push_back(i);
+              ans.push_back(mp[k-a[i]]);
+              return ans;
+          }
+            mp[a[i]]=i;
+        }
+        return ans;
+     }
+    
+};

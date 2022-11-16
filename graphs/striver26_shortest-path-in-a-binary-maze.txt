@@ -1,0 +1,33 @@
+
+https://practice.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=shortest-path-in-a-binary-maze
+ int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
+                     pair<int, int> dest) {
+        // code here
+        queue<pair<int,pair<int,int>>> q;
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<int>> dist(n,vector<int>(m,1e9));
+        q.push({0,{source.first,source.second}});
+        while(!q.empty())
+        {
+            int a=q.front().first;
+            int x=q.front().second.first;
+            int y=q.front().second.second;
+            q.pop();
+            if(x==dest.first && y==dest.second)
+              return a;
+            int dx[]={-1,0,+1,0};
+            int dy[]={0,+1,0,-1};
+            
+            for(int i=0;i<4;i++)
+            {
+                if(x+dx[i]>=0 && x+dx[i]<n && y+dy[i]>=0 && y+dy[i]<m && grid[x+dx[i]][y+dy[i]]==1 && dist[x+dx[i]][y+dy[i]]>1+a)
+                {
+                    dist[x+dx[i]][y+dy[i]]=1+a;
+                    q.push({a+1,{x+dx[i],y+dy[i]}});
+                }
+            }
+            
+            
+        }
+        return -1;
+    }

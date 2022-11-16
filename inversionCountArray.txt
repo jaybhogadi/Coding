@@ -1,0 +1,69 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void merge(int l1, int h1, int l2, int h2, vector<int>&nums, int &count)
+{
+	int n1 = h1 - l1 + 1;
+	int n2 = h2 - l2 + 1;
+	vector<int>a(n1), b(n2), c(n1 + n2);
+	for (int i = 0; i < n1; i++)
+		a[i] = nums[l1 + i];
+	for (int i = 0; i < n2; i++)
+		b[i] = nums[l2 + i];
+	int i = 0, j = 0, k = 0;
+	while (i < n1 and j < n2)
+	{
+		if (a[i] <= b[j])
+			c[k++] = a[i++];
+		else
+		{
+			count += n1 - i;
+			c[k++] = b[j++];
+		}
+	}
+	while (i < n1)
+		c[k++] = a[i++];
+	while (j < n2)
+		c[k++] = b[j++];
+	for (int i = 0; i < (n1 + n2); i++)
+		nums[l1 + i] = c[i];
+}
+
+void merge_sort(int l, int h, vector<int>&nums, int &count)
+{
+	if (h > l)
+	{
+		int mid = l + (h - l) / 2;
+		merge_sort(l, mid, nums, count);
+		merge_sort(mid + 1, h, nums, count);
+		merge(l, mid, mid + 1, h, nums, count);
+	}
+
+}
+
+
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    for(int i=0;i<n;i++)
+     cin>>a[i];
+     int temp[n];
+     int count=0;
+     merge_sort(0,n-1,a,count);
+    cout<<count;
+
+    return 0;
+}

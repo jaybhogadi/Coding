@@ -1,0 +1,41 @@
+https://leetcode.com/problems/majority-element/submissions/
+
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        // int count=0,ele=0;
+        // for(auto i:nums)
+        // {
+        //     if(count==0){
+        //         ele=i;
+        //         count++;
+        //     }
+        //     else
+        //     {
+        //         if(i==ele)
+        //              count++;
+        //         else
+        //             count--;
+        //     }
+        // }
+        // return ele;
+        unordered_map<int,int> mp;
+        for(auto i:nums)
+        {
+            if(mp.find(i)!=mp.end())
+            {
+                mp[i]++;
+            }else
+                mp.insert({i,1});
+            if(mp[i]>nums.size()/2)
+                return i;
+        }
+        for(auto u:mp)
+        {
+            cout<<u.first<<" "<<u.second<<endl;
+        }
+        return mp[mp.size()-1];
+    }
+};

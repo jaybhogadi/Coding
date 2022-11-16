@@ -1,0 +1,33 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+#include <bits/stdc++.h>
+
+using namespace std;
+#define NO 256
+int f(string str){
+    int n = str.size();
+    int res = 0; 
+    vector<int> lt(NO, -1);
+    int i = 0;
+    for (int j = 0; j < n; j++) {
+        i = max(i, lt[str[j]] + 1);
+        res = max(res, j - i + 1);
+        lt[str[j]] = j;
+    }
+    return res;
+    
+}
+int main()
+{
+    string s;
+    cin>>s;
+    cout<<f(s);
+
+    return 0;
+}

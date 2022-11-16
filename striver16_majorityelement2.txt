@@ -1,0 +1,74 @@
+class Solution {
+public:
+    bool fun(vector<int> v,int a)
+    {
+        for(auto i:v)
+        {
+            if(i==a)
+                return false;
+        }
+        return true;
+    }
+    vector<int> majorityElement(vector<int>& nums) {
+         int ele1=0,ele2=0,c1=0,c2=0;
+        if(nums.size()==1)
+             return nums;
+        for(auto i:nums)
+        {
+            if(ele1==i)
+            {
+              
+                c1++;
+            }else if(ele2==i)
+            {
+              
+                c2++;
+            }else if(c1==0)
+            { ele1=i;
+               c1++;
+            }else if(c2==0)
+            {
+                ele2=i;
+               c2++;
+            }else
+            {
+             c1--;
+            c2--;}
+        }
+        vector<int> v1;
+        int u=0,v=0;
+        for(auto i:nums)
+        {
+            if(i==ele1)
+                 u++;
+            else if(i==ele2)
+                 v++;
+        }
+        if(u>nums.size()/3)
+             v1.push_back(ele1);
+        if(v>nums.size()/3)
+             v1.push_back(ele2);
+        return v1;
+             
+        
+        
+        
+//        unordered_map<int,int> mp;
+//         vector<int> v;
+//         for(auto i:nums)
+//         {
+//             if(mp.find(i)!=mp.end())
+//             {
+//                 mp[i]++;
+//             }else
+//                 mp.insert({i,1});
+//             if(mp[i]>nums.size()/3)
+//             {
+//                 if(fun(v,i))
+//                      v.push_back(i);
+//             }
+//         }
+      
+//         return v;
+    }
+};

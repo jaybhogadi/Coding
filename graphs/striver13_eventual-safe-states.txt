@@ -1,0 +1,39 @@
+ 
+
+https://practice.geeksforgeeks.org/problems/eventual-safe-states/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=eventual-safe-states private:
+     bool dfscheck(int indx,int vis[],int pv[],vector<int> adj[])
+     {
+         vis[indx]=1;
+         pv[indx]=1;
+         for(auto i:adj[indx])
+         {
+             if(vis[i]!=1)
+             {
+                 if(dfscheck(i,vis,pv,adj)==true)
+                   return true;
+             }
+             if(pv[i]==1)
+               return true;
+         }
+         pv[indx]=0;
+         return false;
+     }
+     
+    
+  public:
+    vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+          int vis[V]={0};
+        int pathvisit[V]={0};
+        vector<int> ans;
+            for(int i=0;i<V;i++)
+            {
+                
+                
+                    if(dfscheck(i,vis,pathvisit,adj)==false)
+                      ans.push_back(i);
+                
+            }
+           sort(ans.begin(),ans.end());
+           return ans;
+        // code here
+    }

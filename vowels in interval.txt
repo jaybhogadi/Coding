@@ -1,0 +1,72 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+bool isv(char a)
+{
+    if(a=='e' || a=='a' || a=='i' || a=='o' || a=='u')
+    return true;
+    return false;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string> s;
+    vector<int> u,v,res;
+    for(int i=0;i<n;i++)
+    {
+        string k;
+        cin>>k;
+        s.push_back(k);
+        if(isv(k[0]) && isv(k[k.length()-1]))
+        {
+            u.push_back(1);
+        }
+        else
+         u.push_back(0);
+    }
+    v.push_back(u[0]);
+    for(int i=1;i<n;i++)
+    {
+        v.push_back(v[i-1]+u[i]);
+    }
+     
+     
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        string m;
+        cin>>m;
+        int x=0,z=0;
+        int y=0;
+        while(m[y]!='-')
+        {
+            x=x*10;
+            x+=m[y++]-'0';
+        }y++;
+        while(y<m.length())
+        {
+            z=z*10;
+            z+=m[y++]-'0';
+        }
+      
+        if(x==1)
+         cout<<v[z-1]<<endl;
+         else
+         cout<<v[z-1]-v[x-2]<<endl;
+        
+   
+    }
+
+    return 0;
+}

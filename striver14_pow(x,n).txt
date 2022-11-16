@@ -1,0 +1,33 @@
+https://leetcode.com/problems/powx-n/submissions/
+
+class Solution {
+public:
+     double mypow(double x, int n){
+         if(n==0)
+             return 1;
+          if(n==1)
+             return x;
+        int k=n/2;
+        int u=n%2;
+        double m=myPow(x,k);
+        if(u==1)
+        return m*m*x;
+        return m*m;
+     }
+    double myPow(double x, int n) {
+          if(n<0)
+        {
+            n=abs(n);
+            x=1/x;
+        }
+        return mypow(x,n);
+        if(n==1)
+             return x;
+        int k=n/2;
+        int u=n%2;
+        double m=myPow(x,k);
+        if(u==1)
+        return m*m*x;
+        return m*m;
+    }
+};

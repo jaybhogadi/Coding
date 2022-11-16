@@ -1,0 +1,29 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+https://leetcode.com/problems/middle-of-the-linked-list/submissions/
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* ptr1=head;
+        ListNode* ptr2=head;
+        while(ptr2->next!=NULL && ptr2->next->next!=NULL)
+        {
+           ptr1=ptr1->next;
+            ptr2=ptr2->next->next;
+        }
+        if(ptr2->next!=NULL)
+            return ptr1->next;
+        return ptr1;
+    }
+};

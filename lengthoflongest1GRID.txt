@@ -1,0 +1,122 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+// C++ program for the above approach
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int vis[21][21], id;
+int diameter = 0, length = 0;
+
+// Keeps a track of directions
+// that is up, down, left, right
+int dx[] = { -1, 1, 0, 0 };
+int dy[] = { 0, 0, -1, 1 };
+
+// Function to perform the dfs traversal
+void dfs(int a, int b,	vector<vector<int>> lis,
+		int& x, int& y,int row,int col)
+{
+
+	// Mark the current node as visited
+	vis[a][b] = id;
+
+	// Increment length from this node
+	length++;
+
+	// Update the diameter length
+	if (length > diameter) {
+		x = a;
+		y = b;
+		diameter = length;
+	}
+	for (int j = 0; j < 4; j++) {
+
+		// Move to next cell in x-direction
+		int cx = a + dx[j];
+
+		// Move to next cell in y-direction
+		int cy = b + dy[j];
+
+		// Check if cell is invalid
+		// then continue
+		if (cx < 0 || cy < 0 || cx >= row
+			|| cy >= col || lis[cx][cy] == 0
+			|| vis[cx][cy]) {
+			continue;
+		}
+
+		// Perform DFS on new cell
+		dfs(cx, cy, lis, x, y,row,col);
+	}
+
+	vis[a][b] = 0;
+
+	// Decrement the length
+	length--;
+}
+
+// Function to find the maximum length of
+// connected 1s in the given grid
+void findMaximumLength(	vector<vector<int>> lis,int row,int col)
+{
+
+	int x, y;
+
+	// Increment the id
+	id++;
+	length = 0;
+	diameter = 0;
+
+	// Traverse the grid[]
+	for (int i = 0; i < row; i++) {
+
+		for (int j = 0; j < col; j++) {
+
+			if (lis[i][j] != 0) {
+
+				// Find start point of
+				// start dfs call
+				dfs(i, j, lis, x, y,row,col);
+				i = row;
+				break;
+			}
+		}
+	}
+
+	id++;
+	length = 0;
+	diameter = 0;
+
+	// DFS Traversal from cell (x, y)
+	dfs(x, y, lis, x, y,row,col);
+
+	// Print the maximum length
+	cout << diameter;
+}
+
+// Driver Code
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    cout<<id<<endl;
+	// Given grid[][]
+	vector<vector<int>> v(n,vector<int>(m));
+	for(int i=0;i<n;i++)
+	{
+	    for(int j=0;j<m;j++)
+	     cin>>v[i][j];
+	} 
+
+	// Function Call
+	findMaximumLength(v,n,m);
+
+	return 0;
+}

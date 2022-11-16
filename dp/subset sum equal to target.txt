@@ -1,0 +1,50 @@
+/******************************************************************************
+take u forward
+subset sum equal to target
+
+
+
+
+
+
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+  int n;cin>>n;
+  int a[n];int target=0;
+  for(int i=0;i<n;i++){
+  cin>>a[i];
+  
+  }
+  cin>>target;
+  vector<vector<bool>> dp(n,vector<bool>(target+1,false));
+  for(int i=0;i<n;i++)
+   dp[i][0]=1;
+   for(int i=0;i<n;i++)
+    if(a[i]<target)dp[i][a[i]]=1;
+    
+    for(int i=1;i<n;i++)
+    {
+        for(int k=0;k<=target;k++)
+        {
+            bool nt=dp[i-1][k];
+            bool t=0;
+            if(a[i]<=k)
+            t=dp[i-1][k-a[i]];
+            dp[i][k]=nt|t;
+        }
+    }
+    cout<<dp[n-1][target];
+
+    return 0;
+}
