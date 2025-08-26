@@ -1,0 +1,42 @@
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 26
+        self.isLeaf = False
+class Trie:
+
+    def __init__(self):
+        self.node=TrieNode()
+        
+    
+        
+
+    def insert(self, word: str) -> None:
+        root=self.node
+        for i in word:
+            if root.children[ord(i)-ord('a')] is None:
+                root.children[ord(i)-ord('a')]=TrieNode()
+            root=root.children[ord(i)-ord('a')]
+        root.isLeaf=True
+
+            
+
+        
+
+    def search(self, word: str) -> bool:
+        curr=self.node
+        for i in word:
+            if curr.children[ord(i)-ord('a')] is None:
+                return False
+            curr=curr.children[ord(i)-ord('a')]
+        return curr.isLeaf
+
+
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        curr=self.node
+        for i in prefix:
+            if curr.children[ord(i)-ord('a')] is None:
+                return False
+            curr=curr.children[ord(i)-ord('a')]
+        return True
